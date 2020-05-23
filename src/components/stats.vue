@@ -28,7 +28,7 @@
                          <v-list-item-title class="headline mb-1">
                              {{ global_total.total_confirmed }}
                              <span>({{ global_total.total_confirmed_change}})</span>
-                             <span style="color: orange" v-if="global_total.total_confirmed > 0">↑</span>
+                             <span style="color: #ffa500" v-if="global_total.total_confirmed > 0">↑</span>
                          </v-list-item-title>
                          <v-list-item-subtitle>Total Confirmed</v-list-item-subtitle>
                      </v-list-item-content>

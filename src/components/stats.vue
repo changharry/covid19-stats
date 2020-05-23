@@ -74,7 +74,6 @@
              </v-card>
          </v-col>
          <v-col cols="12">
-
 <!--             <v-simple-table>-->
 <!--                 <template v-slot:default>-->
 <!--                     <thead>-->

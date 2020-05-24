@@ -26,9 +26,9 @@
                  <v-list-item three-line>
                      <v-list-item-content>
                          <v-list-item-title class="headline mb-1">
-                             {{ global_total.total_confirmed }}
-                             <span>({{ global_total.total_confirmed_change}})</span>
-                             <span style="color: #ffa500" v-if="global_total.total_confirmed > 0">↑</span>
+                             {{ global_total["total_confirmed"] }}
+                             <span>({{ global_total["total_confirmed_change"]}})</span>
+                             <span style="color: #ffa500" v-if="global_total['total_confirmed'] > 0">↑</span>
                          </v-list-item-title>
                          <v-list-item-subtitle>Total Confirmed</v-list-item-subtitle>
                      </v-list-item-content>
@@ -45,9 +45,9 @@
                  <v-list-item three-line>
                      <v-list-item-content>
                          <v-list-item-title class="headline mb-1">
-                             {{ global_total.total_deaths }}
-                             <span>({{ global_total.total_deaths_change }})</span>
-                             <span style="color: red" v-if="global_total.total_deaths > 0">↑</span>
+                             {{ global_total["total_deaths"] }}
+                             <span>({{ global_total["total_deaths_change"] }})</span>
+                             <span style="color: red" v-if="global_total['total_deaths'] > 0">↑</span>
                          </v-list-item-title>
                          <v-list-item-subtitle>Total Deaths</v-list-item-subtitle>
                      </v-list-item-content>
@@ -64,9 +64,9 @@
                  <v-list-item three-line>
                      <v-list-item-content>
                          <v-list-item-title class="headline mb-1">
-                             {{ global_total.total_recovered }}
-                             <span>({{ global_total.total_recovered_change }})</span>
-                             <span style="color: greenyellow" v-if="global_total.total_recovered > 0">↑</span>
+                             {{ global_total["total_recovered"] }}
+                             <span>({{ global_total["total_recovered_change"] }})</span>
+                             <span style="color: greenyellow" v-if="global_total['total_recovered'] > 0">↑</span>
                          </v-list-item-title>
                          <v-list-item-subtitle>Total Recovered</v-list-item-subtitle>
                      </v-list-item-content>

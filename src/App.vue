@@ -82,7 +82,7 @@
 
         <v-content>
             <v-container class="fill-height">
-                <Stats></Stats>
+                <router-view/>
 <!--                <v-row-->
 <!--                        justify="center"-->
 <!--                        align="center"-->
@@ -111,14 +111,11 @@
 </template>
 
 <script>
-    import Stats from "@/components/stats"
-
     export default {
         props: {
             source: String,
         },
         components:{
-            Stats
         },
         data: () => ({
             drawer: null,

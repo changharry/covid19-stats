@@ -125,7 +125,7 @@
                                :search="search"
                                 >
                      <template v-slot:item.country="{ item }">
-                         <div @click="api-regional">{{ item.country }}</div>
+                         <router-link :to=get_route(item.country)>{{ item.country }}</router-link>
                      </template>
                      <template v-slot:item.confirmed="{ item }">
                          {{ item.confirmed }}
@@ -168,7 +168,7 @@
                 { text: 'Recovered', value: 'recovered' },],
             global: [],
             global_total: [],
-            search: ''
+            search: '',
         }),
         methods: {
             api_global() {
@@ -184,6 +184,9 @@
                 }).catch(e => {
                     this.errors.push(e)
                 })
+            },
+            get_route(country) {
+                return '/region/' + country
             }
         },
         created: function() {

@@ -11,7 +11,7 @@
                  <v-list-item three-line>
                      <v-list-item-content>
                          <v-list-item-title class="headline mb-1">Global</v-list-item-title>
-                         <v-list-item-subtitle>testtesttest</v-list-item-subtitle>
+                         <v-list-item-subtitle>Update once a day between 00:00 to 06:00 UTC</v-list-item-subtitle>
                      </v-list-item-content>
                  </v-list-item>
              </v-card>
@@ -107,8 +107,8 @@
 <!--                 </template>-->
 <!--             </v-simple-table>-->
              <v-card>
-                 <v-card-title>
-                     Global Trend
+                 <v-card-title v-if="global_loaded">
+                     Global Trend ({{ global[0]['update_time']}})
                      <v-spacer></v-spacer>
                      <v-text-field
                              v-model="search"
@@ -125,7 +125,7 @@
                                :search="search"
                                 >
                      <template v-slot:item.country="{ item }">
-                         <router-link :to=get_route(item.country)>{{ item.country }}</router-link>
+                         <router-link :to=get_route(item.country) >{{ item.country }}</router-link>
                      </template>
                      <template v-slot:item.confirmed="{ item }">
                          {{ item.confirmed }}
@@ -169,11 +169,13 @@
             global: [],
             global_total: [],
             search: '',
+            global_loaded: false
         }),
         methods: {
             api_global() {
                 axios.get('http://127.0.0.1:8000/api/global').then(response => {
                     this.global = response.data;
+                    this.global_loaded= true
                 }).catch(e => {
                     this.errors.push(e)
                 })
@@ -189,10 +191,10 @@
                 return '/region/' + country
             }
         },
-        created: function() {
-            this.api_global()
+        mounted(){
             this.api_global_total()
-        }
+            this.api_global()
+        },
     }
 </script>
 

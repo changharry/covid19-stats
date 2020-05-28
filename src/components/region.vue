@@ -11,7 +11,7 @@
                     <v-list-item three-line>
                         <v-list-item-content>
                             <v-list-item-title class="headline mb-1">{{$route.params.name}}</v-list-item-title>
-                            <v-list-item-subtitle>testtesttest</v-list-item-subtitle>
+                            <v-list-item-subtitle></v-list-item-subtitle>
                         </v-list-item-content>
                     </v-list-item>
                 </v-card>
@@ -25,7 +25,7 @@
                 >
                     <v-list-item three-line>
                         <v-list-item-content>
-                            <v-list-item-title class="headline mb-1">
+                            <v-list-item-title class="headline mb-1" v-if="r_itr_loaded">
                                 {{ r_itr()['confirmed'] }}
                                 <span>({{ r_itr()['confirmed_change'] }})</span>
                                 <span style="color: #ffa500" v-if="r_itr()['confirmed'] > 0">↑</span>
@@ -44,7 +44,7 @@
                 >
                     <v-list-item three-line>
                         <v-list-item-content>
-                            <v-list-item-title class="headline mb-1">
+                            <v-list-item-title class="headline mb-1" v-if="r_itr_loaded">
                                 {{ r_itr()['deaths'] }}
                                 <span>({{ r_itr()['deaths_change'] }})</span>
                                 <span style="color: red" v-if="r_itr()['deaths'] > 0">↑</span>
@@ -63,7 +63,7 @@
                 >
                     <v-list-item three-line>
                         <v-list-item-content>
-                            <v-list-item-title class="headline mb-1">
+                            <v-list-item-title class="headline mb-1" v-if="r_itr_loaded">
                                 {{ r_itr()['recovered']}}
                                 <span>({{ r_itr()['recovered_change'] }})</span>
                                 <span style="color: greenyellow" v-if="r_itr()['recovered'] > 0">↑</span>
@@ -75,8 +75,8 @@
             </v-col>
             <v-col cols="12">
                 <v-card v-if=have_states()>
-                    <v-card-title>
-                        National Trend
+                    <v-card-title v-if="region_loaded">
+                        National Trend ({{ global[0]['update_time']}})
                         <v-spacer></v-spacer>
                         <v-text-field
                                 v-model="search"
@@ -137,7 +137,9 @@
             regional: [],
             global: [],
             search: '',
-            list_hs: ['Australia', 'Canada', 'China', 'Netherlands', 'United Kingdom', 'France', 'Denmark']
+            list_hs: ['Australia', 'Canada', 'China', 'Netherlands', 'United Kingdom', 'France', 'Denmark'],
+            region_loaded: false,
+            r_itr_loaded: false
         }),
         methods: {
             api_regional() {
@@ -153,6 +155,7 @@
             api_global() {
                 axios.get('http://127.0.0.1:8000/api/global').then(response => {
                     this.global = response.data;
+                    this.region_loaded = true
                 }).catch(e => {
                     this.errors.push(e)
                 })
@@ -160,13 +163,13 @@
             r_itr() {
                 for (let i = 0; i < this.global.length; i++){
                     if (this.global[i]['country'] === this.$route.params.name){
-                        console.log('bye')
+                        this.r_itr_loaded = true
                         return this.global[i]
                     }
                 }
             }
         },
-        created: function() {
+        mounted: function() {
             this.api_regional()
             this.api_global()
         }

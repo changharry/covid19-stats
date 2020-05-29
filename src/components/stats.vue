@@ -74,38 +74,6 @@
              </v-card>
          </v-col>
          <v-col cols="12">
-<!--             <v-simple-table>-->
-<!--                 <template v-slot:default>-->
-<!--                     <thead>-->
-<!--                     <tr>-->
-<!--                         <th class="text-left">Country</th>-->
-<!--                         <th class="text-left">Confirmed</th>-->
-<!--                         <th class="text-left">Deaths</th>-->
-<!--                         <th class="text-left">Recovered</th>-->
-<!--                     </tr>-->
-<!--                     </thead>-->
-<!--                     <tbody>-->
-<!--                     <tr v-for="record in global" :key="record.name">-->
-<!--                         <td class="text-left">{{ record.country }}</td>-->
-<!--                         <td class="text-left">-->
-<!--                             {{ record.confirmed }}-->
-<!--                             <span>({{ record.confirmed_change }})</span>-->
-<!--                             <span style="color: yellow" v-if="record.confirmed_change > 0">↑</span>-->
-<!--                         </td>-->
-<!--                         <td class="text-left">-->
-<!--                             {{ record.deaths }}-->
-<!--                             <span>({{ record.deaths_change }})</span>-->
-<!--                             <span style="color: red" v-if="record.deaths_change > 0">↑</span>-->
-<!--                         </td>-->
-<!--                         <td class="text-left">-->
-<!--                             {{ record.recovered}}-->
-<!--                             <span>({{ record.recovered_change }})</span>-->
-<!--                             <span style="color: green" v-if="record.recovered_change > 0">↑</span>-->
-<!--                         </td>-->
-<!--                     </tr>-->
-<!--                     </tbody>-->
-<!--                 </template>-->
-<!--             </v-simple-table>-->
              <v-card>
                  <v-card-title v-if="global_loaded">
                      Global Trend ({{ global[0]['update_time']}})
@@ -144,17 +112,21 @@
                      </template>
                  </v-data-table>
              </v-card>
+             <div>
+                 <chart></chart>
+             </div>
          </v-col>
      </v-row>
  </v-container>
 </template>
 
 <script>
-    import axios from 'axios'
-    // import { Bar } from 'vue-chartjs'
+    import axios from 'axios';
+    import Chart from "@/components/charts/chartContainer";
 
     export default {
         name: "stats",
+        components: {Chart},
         data: () => ({
             headers: [
                 {
@@ -171,6 +143,9 @@
             search: '',
             global_loaded: false
         }),
+        component: {
+            Chart
+        },
         methods: {
             api_global() {
                 axios.get('http://127.0.0.1:8000/api/global').then(response => {

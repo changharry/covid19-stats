@@ -145,7 +145,7 @@
             global: [],
             global_total: [],
             search: '',
-            global_loaded: false
+            global_loaded: false,
         }),
         methods: {
             api_global() {

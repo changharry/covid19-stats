@@ -11,7 +11,7 @@
 
 <script>
     import LineChart from './LineChart'
-    import axios from "axios";
+    import axios from "@/components/axiosConfig";
 
     export default {
         name: 'total',
@@ -27,7 +27,7 @@
         async mounted () {
             this.loaded = false
             try {
-                await axios.get('http://127.0.0.1:8000/api/g_total').then(response => {
+                await axios.get('/api/g_total').then(response => {
                     this.chartData = {
                         'labels': response.data['label'],
                         'datasets': [{

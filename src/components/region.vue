@@ -119,7 +119,7 @@
 </template>
 
 <script>
-    import axios from 'axios'
+    import axiosInstance from './axiosConfig'
 
     export default {
         name: "region",
@@ -142,7 +142,7 @@
         }),
         methods: {
             api_regional() {
-                axios.get('http://127.0.0.1:8000/api/regional_stats').then(response => {
+                axiosInstance.get('/api/regional_stats').then(response => {
                     this.regional = response.data;
                 }).catch(e => {
                     this.errors.push(e)
@@ -152,7 +152,7 @@
                 return this.list_hs.includes(this.$route.params.name)
             },
             api_global() {
-                axios.get('http://127.0.0.1:8000/api/global').then(response => {
+                axiosInstance.get('/api/global').then(response => {
                     this.global = response.data;
                     this.region_loaded = true
                 }).catch(e => {

@@ -123,7 +123,7 @@
 </template>
 
 <script>
-    import axios from 'axios';
+    import axiosInstance from './axiosConfig';
     import TotalChange from "@/components/charts/total/totalChange";
     import Total from "@/components/charts/total/total";
     import TotalRateOfChange from "@/components/charts/total/totalRateOfChange";
@@ -149,7 +149,7 @@
         }),
         methods: {
             api_global() {
-                axios.get('http://127.0.0.1:8000/api/global').then(response => {
+                axiosInstance.get('/api/global').then(response => {
                     this.global = response.data;
                     this.global_loaded= true
                 }).catch(e => {
@@ -157,7 +157,7 @@
                 })
             },
             api_global_total() {
-                axios.get('http://127.0.0.1:8000/api/global_total').then(response => {
+                axiosInstance.get('/api/global_total').then(response => {
                     this.global_total = response.data;
                 }).catch(e => {
                     this.errors.push(e)

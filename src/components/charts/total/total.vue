@@ -10,7 +10,7 @@
 </template>
 
 <script>
-    import LineChart from './LineChart'
+    import LineChart from '../LineChart'
     import axios from "@/components/axiosConfig";
 
     export default {

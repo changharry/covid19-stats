@@ -27,23 +27,23 @@
         async mounted () {
             this.loaded = false
             try {
-                await axios.get('/api/g_total_change').then(response => {
+                await axios.get('/api/r_change/' + this.$route.params.name).then(response => {
                     this.chartData = {
                         'labels': response.data['label'],
                         'datasets': [{
                             label: 'Confirmed',
                             borderColor: 'orange',
-                            data: response.data['confirmed']
+                            data: response.data['c']
                         },
                             {
                                 label: 'Deaths',
                                 borderColor: 'red',
-                                data: response.data['deaths']
+                                data: response.data['d']
                             },
                             {
                                 label: 'Recovered',
                                 borderColor: 'green',
-                                data: response.data['recovered']
+                                data: response.data['r']
                             }]
                     }
                 }).catch(e => {

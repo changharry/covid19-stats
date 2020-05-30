@@ -113,7 +113,9 @@
                  </v-data-table>
              </v-card>
              <div>
-                 <chart></chart>
+                 <total/>
+                 <total-change/>
+                 <total-rate-of-change/>
              </div>
          </v-col>
      </v-row>
@@ -122,11 +124,13 @@
 
 <script>
     import axios from 'axios';
-    import Chart from "@/components/charts/chartContainer";
+    import TotalChange from "@/components/charts/total/totalChange";
+    import Total from "@/components/charts/total/total";
+    import TotalRateOfChange from "@/components/charts/total/totalRateOfChange";
 
     export default {
         name: "stats",
-        components: {Chart},
+        components: {TotalRateOfChange, Total, TotalChange},
         data: () => ({
             headers: [
                 {
@@ -143,9 +147,6 @@
             search: '',
             global_loaded: false
         }),
-        component: {
-            Chart
-        },
         methods: {
             api_global() {
                 axios.get('http://127.0.0.1:8000/api/global').then(response => {

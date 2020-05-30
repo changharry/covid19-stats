@@ -25,7 +25,7 @@
                 >
                     <v-list-item three-line>
                         <v-list-item-content>
-                            <v-list-item-title class="headline mb-1" v-if="r_itr_loaded">
+                            <v-list-item-title class="headline mb-1" v-if="region_loaded">
                                 {{ r_itr()['confirmed'] }}
                                 <span>({{ r_itr()['confirmed_change'] }})</span>
                                 <span style="color: #ffa500" v-if="r_itr()['confirmed'] > 0">↑</span>
@@ -44,7 +44,7 @@
                 >
                     <v-list-item three-line>
                         <v-list-item-content>
-                            <v-list-item-title class="headline mb-1" v-if="r_itr_loaded">
+                            <v-list-item-title class="headline mb-1" v-if="region_loaded">
                                 {{ r_itr()['deaths'] }}
                                 <span>({{ r_itr()['deaths_change'] }})</span>
                                 <span style="color: red" v-if="r_itr()['deaths'] > 0">↑</span>
@@ -63,7 +63,7 @@
                 >
                     <v-list-item three-line>
                         <v-list-item-content>
-                            <v-list-item-title class="headline mb-1" v-if="r_itr_loaded">
+                            <v-list-item-title class="headline mb-1" v-if="region_loaded">
                                 {{ r_itr()['recovered']}}
                                 <span>({{ r_itr()['recovered_change'] }})</span>
                                 <span style="color: greenyellow" v-if="r_itr()['recovered'] > 0">↑</span>
@@ -94,7 +94,7 @@
                                   :search="search"
                     >
                         <template v-slot:item.country="{ item }">
-                            <div @click="api-regional">{{ item.province }}</div>
+                            <div @click="api_regional">{{ item.province }}</div>
                         </template>
                         <template v-slot:item.confirmed="{ item }">
                             {{ item.confirmed }}
@@ -139,7 +139,6 @@
             search: '',
             list_hs: ['Australia', 'Canada', 'China', 'Netherlands', 'United Kingdom', 'France', 'Denmark'],
             region_loaded: false,
-            r_itr_loaded: false
         }),
         methods: {
             api_regional() {
@@ -163,7 +162,6 @@
             r_itr() {
                 for (let i = 0; i < this.global.length; i++){
                     if (this.global[i]['country'] === this.$route.params.name){
-                        this.r_itr_loaded = true
                         return this.global[i]
                     }
                 }

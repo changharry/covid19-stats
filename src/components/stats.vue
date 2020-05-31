@@ -116,6 +116,7 @@
                  <total/>
                  <total-change/>
                  <total-rate-of-change/>
+                 <total-delta-rate-of-change/>
              </div>
          </v-col>
      </v-row>
@@ -127,10 +128,11 @@
     import TotalChange from "@/components/charts/total/totalChange";
     import Total from "@/components/charts/total/total";
     import TotalRateOfChange from "@/components/charts/total/totalRateOfChange";
+    import TotalDeltaRateOfChange from "@/components/charts/total/totalDeltaRateOfChange";
 
     export default {
         name: "stats",
-        components: {TotalRateOfChange, Total, TotalChange},
+        components: {TotalDeltaRateOfChange, TotalRateOfChange, Total, TotalChange},
         data: () => ({
             headers: [
                 {

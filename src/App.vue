@@ -55,7 +55,7 @@
             drawer: null,
             items: [
                 { icon: 'mdi-earth', text: 'Global', link: '/'},
-                { icon: 'mdi-flag', text: 'Regional', },
+                // { icon: 'mdi-flag', text: 'Regional', },
                 {icon: 'mdi -heart', text: 'Support Me',}
             ],
         }),

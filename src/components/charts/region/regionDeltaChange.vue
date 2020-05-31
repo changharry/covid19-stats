@@ -1,11 +1,11 @@
 <template>
     <div class="container">
-        <h1>Total</h1>
+        <h1>ΔGrowth rate (%)</h1>
         <line-chart
                 v-if="loaded"
                 :chartData="chartData"
                 :options="options"
-                />
+        />
     </div>
 </template>
 
@@ -14,7 +14,7 @@
     import axios from "@/components/axiosConfig";
 
     export default {
-        name: 'total',
+        name: 'RegionDeltaRateOfChange',
         components: { LineChart },
         data: () => ({
             loaded: false,
@@ -27,7 +27,7 @@
         async mounted () {
             this.loaded = false
             try {
-                await axios.get('/api/r_total/' + this.$route.params.name).then(response => {
+                await axios.get('/api/r_delta_rate_change/' + this.$route.params.name).then(response => {
                     this.chartData = {
                         'labels': response.data['label'],
                         'datasets': [{

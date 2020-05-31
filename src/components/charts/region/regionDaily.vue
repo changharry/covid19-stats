@@ -1,11 +1,11 @@
 <template>
     <div class="container">
-        <h1>New Cases</h1>
+        <h1>Daily Cases</h1>
         <line-chart
                 v-if="loaded"
                 :chartData="chartData"
                 :options="options"
-        />
+                />
     </div>
 </template>
 
@@ -14,7 +14,7 @@
     import axios from "@/components/axiosConfig";
 
     export default {
-        name: 'totalChange',
+        name: 'regionDaily',
         components: { LineChart },
         data: () => ({
             loaded: false,
@@ -27,23 +27,23 @@
         async mounted () {
             this.loaded = false
             try {
-                await axios.get('/api/g_total_change').then(response => {
+                await axios.get('/api/r_total/' + this.$route.params.name).then(response => {
                     this.chartData = {
                         'labels': response.data['label'],
                         'datasets': [{
                             label: 'Confirmed',
                             borderColor: 'orange',
-                            data: response.data['confirmed']
+                            data: response.data['c']
                         },
                             {
                                 label: 'Deaths',
                                 borderColor: 'red',
-                                data: response.data['deaths']
+                                data: response.data['d']
                             },
                             {
                                 label: 'Recovered',
                                 borderColor: 'green',
-                                data: response.data['recovered']
+                                data: response.data['r']
                             }]
                     }
                 }).catch(e => {

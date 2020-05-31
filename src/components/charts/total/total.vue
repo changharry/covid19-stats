@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <h1>Total</h1>
+        <h1>Daily Cases</h1>
         <line-chart
                 v-if="loaded"
                 :chartData="chartData"

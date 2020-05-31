@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <h1>Rate of Change (%)</h1>
+        <h1>Growth rate (%)</h1>
         <line-chart
                 v-if="loaded"
                 :chartData="chartData"

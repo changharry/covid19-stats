@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <h1>Change</h1>
+        <h1>New Cases</h1>
         <line-chart
                 v-if="loaded"
                 :chartData="chartData"
@@ -14,7 +14,7 @@
     import axios from "@/components/axiosConfig";
 
     export default {
-        name: 'totalChange',
+        name: 'regionChange',
         components: { LineChart },
         data: () => ({
             loaded: false,

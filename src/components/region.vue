@@ -114,9 +114,10 @@
                     </v-data-table>
                 </v-card>
                 <div>
-                    <total/>
-                    <total-change/>
-                    <total-rate-of-change/>
+                    <region-daily/>
+                    <region-change/>
+                    <region-rate-of-change/>
+                    <region-delta-rate-of-change/>
                 </div>
             </v-col>
         </v-row>
@@ -125,13 +126,15 @@
 
 <script>
     import axiosInstance from './axiosConfig'
-    import Total from "@/components/charts/region/total";
-    import TotalChange from "@/components/charts/region/regionChange";
-    import TotalRateOfChange from "@/components/charts/region/regionRateOfChange";
+    import RegionDeltaRateOfChange from "@/components/charts/region/regionDeltaChange";
+    import RegionDaily from "@/components/charts/region/regionDaily";
+    import RegionChange from "@/components/charts/region/regionChange";
+    import RegionRateOfChange from "@/components/charts/region/regionRateOfChange";
+
 
     export default {
         name: "region",
-        components: {TotalRateOfChange, TotalChange, Total},
+        components: {RegionRateOfChange, RegionChange, RegionDaily, RegionDeltaRateOfChange},
         data: () => ({
             headers: [
                 {

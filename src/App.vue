@@ -56,7 +56,7 @@
             items: [
                 { icon: 'mdi-earth', text: 'Global', link: '/'},
                 // { icon: 'mdi-flag', text: 'Regional', },
-                {icon: 'mdi -heart', text: 'Support Me',}
+                {icon: 'mdi-flag', text: 'About', link: '/about'}
             ],
         }),
         created () {
